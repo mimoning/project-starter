@@ -1,6 +1,7 @@
 import * as React from 'react';
-import './App.scss';
-import Loading from './view/components/loading';
+import Loading from '../../components/loading';
+
+import './index.scss';
 
 import logo from './logo.svg';
 
@@ -24,14 +25,9 @@ class App extends React.Component <Props, State> {
 
   public render() {
     return (
-      <div className="App" onClick={() => this.clickHandler()}>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <div className="App">
+        <h1 className="App-title">Welcome to use <strong>DCE Starter</strong></h1>
+        <button className="btn start-btn">Start DCE →</button>
         <Loading show={this.state.loading} />
       </div>
     );

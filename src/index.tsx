@@ -4,13 +4,13 @@ import {
   MemoryRouter as Router,
   Route,
 } from 'react-router';
-import App from './App';
-import './index.scss';
+import Index from './view/pages/index';
+import './common.scss';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <Router>
-    <Route path='/' component={App} />
+    <Route path='/' component={Index} />
   </Router>,
   document.getElementById('root') as HTMLElement
 );

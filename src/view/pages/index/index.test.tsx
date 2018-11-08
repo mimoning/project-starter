@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import Index from './index';
 
-describe('<App />', () => {
+describe('<Index />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
+    ReactDOM.render(<Index />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 })
