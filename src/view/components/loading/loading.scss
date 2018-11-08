@@ -1,0 +1,79 @@
+$box-length: 50px;
+$rotate-angle: 45deg;
+$leaf-scale: scale(1);
+$leaf-color: #4c9bff;
+$leaf-lighter-color: #338dff;
+$leaf-darker-color: #197fff;
+$leaf-perspective: perspective(140px);
+$leaf-flip-time: 0.3s;
+
+@keyframes folding {
+  0%,
+  10% {
+    transform: $leaf-perspective rotateX(-$rotate-angle * 4);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    transform: $leaf-perspective rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: $leaf-perspective rotateY($rotate-angle * 4);
+    opacity: 0;
+  }
+}
+
+@mixin leaf($count) {
+  transform: rotateZ($rotate-angle * 2 * $count);
+  &::before {
+    animation-delay: $leaf-flip-time * $count;
+    background-color: $leaf-lighter-color;
+  }
+}
+
+.loading-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: $box-length;
+  height: $box-length;
+  transform: translateX(-50%) translateY(-50%) rotate($rotate-angle);
+  font-size: 0;
+
+  .leaf {
+    position: relative;
+    width: $box-length / 2;
+    height: $box-length / 2;
+    display: inline-block;
+    &::before {
+      content: '';
+      background-color: $leaf-color;
+      position: absolute;
+      display: block;
+      width: $box-length / 2;
+      height: $box-length / 2;
+      transform-origin: 100% 100%;
+      animation: folding 2.5s infinite linear both;
+    }
+  }
+
+
+  .top-right {
+    @include leaf(1);
+  }
+
+
+  .bot-left {
+    @include leaf(3);
+  }
+
+
+  .bot-right {
+    @include leaf(2);
+    &::before {
+      background: $leaf-darker-color;
+    }
+  }
+}

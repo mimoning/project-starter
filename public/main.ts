@@ -12,6 +12,8 @@ function createWindow(): void {
 
   mainWindow.loadURL('http://localhost:3000')
 
+  mainWindow.webContents.openDevTools()
+
   mainWindow.on('ready-to-show', (): void => {
     mainWindow.show()
   })
