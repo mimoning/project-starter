@@ -1,5 +1,4 @@
-@import '../../../common';
-@import '../../../assets/styles/button';
+@import '../../../assets/styles/variables';
 
 .App {
   text-align: center;
@@ -14,7 +13,8 @@
     margin: 0;
   }
   .start-btn {
-    @include button($blue);
+    margin-top: 10px;
+    font-weight: bold;
   }
 }
 

@@ -27,7 +27,7 @@ class App extends React.Component <Props, State> {
     return (
       <div className="App">
         <h1 className="App-title">Welcome to use <strong>DCE Starter</strong></h1>
-        <button className="btn start-btn">Start DCE →</button>
+        <button className="btn blue start-btn">Start DCE →</button>
         <Loading show={this.state.loading} />
       </div>
     );

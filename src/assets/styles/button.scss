@@ -1,4 +1,4 @@
-@import '../../common';
+@import './variables';
 
 $button-padding: 7px 14px;
 $button-sm-padding: 5px 10px;
@@ -9,7 +9,6 @@ $line-height: 1em;
   background: $color;
   border-color: darken($color, 15%);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  text-shadow: 0 -1px rgba(0,0,0, 0.2);
   &:active {
     box-shadow: inset 0 0 8px 2px rgba(0,0,0,0.1);
   }
