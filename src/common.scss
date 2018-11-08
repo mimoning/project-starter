@@ -1,3 +1,26 @@
+// font size
+$font-size: 14px;
+$font-weight: 300;
+
+// color
+$blue: #3890ff;
+$green: #22c36a;
+$orange: #f56e25;
+$red: #f1483f;
+$yellow: #f7b32b;
+$white: #fff;
+$black: #333;
+$grey: #ccc;
+
+// border radius
+$radius: 4px;
+
+// shadow
+
+div, span {
+  box-sizing: border-box;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -10,8 +33,4 @@ body {
 #root {
   width: 100%;
   height: 100%;
-}
-
-div {
-  box-sizing: border-box;
 }
