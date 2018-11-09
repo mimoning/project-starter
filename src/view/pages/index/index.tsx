@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
 import Loading from '../../components/loading';
 
 import './index.scss';
-
-import logo from './logo.svg';
 
 interface State {
   loading: boolean,
