@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Loading from '../../components/loading';
+import { ReactComponent as SettingLogo } from '../../../assets/image/icons/settings.svg';
 
 import './index.scss';
 
@@ -19,12 +19,16 @@ class App extends React.Component <any, State> {
     })
   }
 
+  public switchPage(pathname: string): void {
+    this.props.history.push({ pathname });
+  }
+
   public render() {
     return (
       <div className="App">
         <h1 className="App-title">Welcome to use <strong>DCE Starter</strong></h1>
-        <button className="btn blue start-btn" onClick={() => this.props.history.push({ pathname: 'test' })}>Start DCE →</button>
-        <Loading show={this.state.loading} />
+        <button className="btn blue start-btn" onClick={() => this.switchPage('test')}>Start DCE →</button>
+        <div className="settings-btn" onClick={() => this.switchPage('settings')}><SettingLogo /></div>
       </div>
     );
   }

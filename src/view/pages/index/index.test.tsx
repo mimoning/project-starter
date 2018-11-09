@@ -11,9 +11,11 @@ describe('<Index />', () => {
   it('switch to other page', () => {
     const history = createHashHistory()
     const index = shallow(<Index history={history} />);
-    expect(index.find('.start-btn').length).toBe(1);
-    const btn = index.find('button.start-btn');
-    btn.simulate('click');
+    const startBtn = index.find('button.start-btn');
+    const settingsBtn = index.find('div.settings-btn');
+    startBtn.simulate('click');
     expect(history.location.pathname).toEqual('/test');
+    settingsBtn.simulate('click');
+    expect(history.location.pathname).toEqual('/settings');
   })
 })
