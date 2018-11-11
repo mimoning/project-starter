@@ -7,6 +7,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Index from './view/pages/index';
+import Settings from './view/pages/settings';
 import './common.scss';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Switch>
       <Route exact path='/' component={Index} />
       <Route path='/test' name='test' component={() => <div>This is the test page</div>} />
+      <Route path='/settings' name='settings' component={Settings}/>
       <Route path="*">
         <Redirect to="/"></Redirect>
       </Route>

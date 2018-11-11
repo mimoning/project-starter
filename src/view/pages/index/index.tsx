@@ -7,7 +7,7 @@ interface State {
   loading: boolean,
 }
 
-class App extends React.Component <any, State> {
+class Index extends React.Component <any, State> {
   constructor(props: any) {
     super(props);
     this.state = { loading: false }
@@ -34,4 +34,4 @@ class App extends React.Component <any, State> {
   }
 }
 
-export default App;
+export default Index;
