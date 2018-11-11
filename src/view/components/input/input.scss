@@ -1,0 +1,113 @@
+@import '../../../assets/styles/variables';
+
+$normal-padding: 0 5px 0;
+$normal-width: 240px;
+$normal-placeholder-color: lighten($grey, 5%);
+$normal-font-family: 'system-ui';
+
+$focus-box-shadow: inset 0 0 4px 2px rgba(56, 144, 255, 0.1),
+0 0 4px 2px rgba(56, 144, 255, 0.1);
+
+$hover-background: darken($white, 2%);
+
+$disabled-background: lighten($grey, 15%);
+
+.input-box {
+  display: inline-block;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.input {
+  height: 28px;
+  width: $normal-width;
+  padding: $normal-padding;
+  outline: none;
+  cursor: text;
+  border: 1px solid $grey;
+  border-radius: $radius - 1px;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &::placeholder {
+    color: $normal-placeholder-color;
+  }
+
+  &:hover {
+    background: $hover-background;
+  }
+
+  &:focus {
+    border-color: $blue;
+    // box-shadow: $focus-box-shadow;
+  }
+
+  &[disabled],
+  &.disabled,
+  fieldset[disabled] & {
+    color: $grey;
+    background: $disabled-background;
+    cursor: not-allowed;
+  }
+
+  // 只有下边框的输入框
+  &.bbo {
+    border-color: transparent;
+    // border-bottom-color: $grey;
+    border-radius: 0;
+    // 伪造的下边框
+    &+.bbo-border {
+      display: inline-block;
+      max-width: 100%;
+      min-width: 20%;
+      width: auto;
+      height: 1px;
+      padding: 0 6px 0;
+      box-sizing: border-box;
+      font-size: $font-size;
+      font-weight: $font-weight;
+      font-family: $normal-font-family;
+      overflow: hidden;
+      background: $grey;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transition: min-width 0.2s ease-in-out,
+        background 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out;
+    }
+
+    &:hover {
+      background: inherit;
+
+      &+.bbo-border {
+        background: $blue;
+      }
+    }
+
+    &:focus {
+      box-shadow: none;
+
+      &+.bbo-border {
+        background: $blue;
+        // box-shadow: $focus-box-shadow;
+        min-width: 100%;
+      }
+    }
+
+    &[disabled],
+    &.disabled,
+    fieldset[disabled] & {
+      color: $grey;
+      background: inherit;
+      cursor: not-allowed;
+
+      &+.bbo-border {
+        background: $grey;
+      }
+    }
+  }
+}

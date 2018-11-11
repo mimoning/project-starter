@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Input from '../../components/input';
 import { ReactComponent as Plus } from '../../../assets/image/icons/plus.svg';
 import { ReactComponent as Minus } from '../../../assets/image/icons/minus.svg';
 
@@ -29,13 +30,17 @@ class Settings extends React.Component<Props, State> {
   public render() {
     return (
       <section className="settings">
-        <div className="form-item project-path">
+        <div className="form-item">
           <label className="form-item-label" htmlFor="projectPath">Project Path</label>
           <div className="form-item-content">
-            <input type="text" id="projectPath" value={this.state.projectPath}/>
+            <Input type="text"
+              className="bbo project-path"
+              id="projectPath"
+              value={this.state.projectPath}
+            />
           </div>
         </div>
-        <div className="form-item ip-scope">
+        <div className="form-item">
           <label className="form-item-label">IP scopes</label>
           <div className="form-item-content">
             {
