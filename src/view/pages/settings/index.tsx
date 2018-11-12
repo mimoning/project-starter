@@ -5,10 +5,6 @@ import { ReactComponent as Minus } from '../../../assets/image/icons/minus.svg';
 
 import './settings.scss';
 
-interface Props {
-
-}
-
 interface State {
   projectPath: string,
   ipScopes: {
@@ -17,8 +13,8 @@ interface State {
   }[],
 }
 
-class Settings extends React.Component<Props, State> {
-  constructor(props: Props) {
+class Settings extends React.Component<any, State> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -27,6 +23,43 @@ class Settings extends React.Component<Props, State> {
         start: '',
         end: '',
       }],
+    }
+  }
+
+  public handleProjectPathChange(value: string):void {
+    this.setState({
+      projectPath: value,
+    });
+  }
+
+  public handleIpScopeChange(value: string, index: number, isStart: boolean = false):void {
+    const ipScopes = this.state.ipScopes.map((v, i) => {
+      if (i === index) {
+        const scope = { ...v };
+        scope[isStart ? 'start' : 'end'] = value;
+        return scope;
+      }
+      return v;
+    });
+    this.setState({
+      ipScopes,
+    })
+  }
+
+  public handleIpScopeRowChange(index?: number): void {
+    const ipScopes = this.state.ipScopes;
+    const initScope = {
+      start: '',
+      end: '',
+    }
+    if (index === undefined) {
+      this.setState({
+        ipScopes: [...ipScopes, initScope],
+      })
+    } else {
+      this.setState({
+        ipScopes: ipScopes.filter((v, i) => i !== index),
+      })
     }
   }
 
@@ -40,6 +73,7 @@ class Settings extends React.Component<Props, State> {
               className="bbo"
               id="projectPath"
               value={this.state.projectPath}
+              onChange={e => this.handleProjectPathChange(e.target.value)}
             />
           </div>
         </div>
@@ -49,14 +83,18 @@ class Settings extends React.Component<Props, State> {
             {
               this.state.ipScopes.map((scope, i) => (
                 <div className="scope-box" key={i}>
-                  <Input className="scope-input" type="text" value={scope.start}/>
+                  <Input className="scope-input" type="text"
+                    value={scope.start}
+                    onChange={e => this.handleIpScopeChange(e.target.value, i, true)}/>
                   ～
-                  <Input className="scope-input" type="text" value={scope.end}/>
-                  <span className="scope-btn icon"><Minus /></span>
+                  <Input className="scope-input" type="text"
+                    value={scope.end}
+                    onChange={e => this.handleIpScopeChange(e.target.value, i)}/>
+                  <span className="scope-btn icon" onClick={() => this.handleIpScopeRowChange(i)} ><Minus /></span>
                 </div>
               ))
             }
-            <span className="scope-btn plus icon"><Plus /></span>
+            <span className="scope-btn plus icon" onClick={() => this.handleIpScopeRowChange()}><Plus /></span>
           </div>
         </div>
       </section>
