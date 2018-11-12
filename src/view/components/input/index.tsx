@@ -6,9 +6,9 @@ interface P extends React.DetailedHTMLProps <React.InputHTMLAttributes<HTMLInput
 class Input extends React.Component <P, {}> {
   public render() {
     return (
-      <div className="input-box">
+      <div className={`input-box ${this.props.className || ''}`}>
         <input { ...this.props }
-          className={`input ${this.props.className || ''}`}
+          className="input"
         />
         {
           this.props.className && this.props.className.indexOf('bbo') > -1 ?

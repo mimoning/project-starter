@@ -23,7 +23,10 @@ class Settings extends React.Component<Props, State> {
 
     this.state = {
       projectPath: '',
-      ipScopes: [],
+      ipScopes: [{
+        start: '',
+        end: '',
+      }],
     }
   }
 
@@ -34,7 +37,7 @@ class Settings extends React.Component<Props, State> {
           <label className="form-item-label" htmlFor="projectPath">Project Path</label>
           <div className="form-item-content">
             <Input type="text"
-              className="bbo project-path"
+              className="bbo"
               id="projectPath"
               value={this.state.projectPath}
             />
@@ -44,15 +47,16 @@ class Settings extends React.Component<Props, State> {
           <label className="form-item-label">IP scopes</label>
           <div className="form-item-content">
             {
-              this.state.ipScopes.map((scope, i) =>
-                (<input className="scope-input" type="text" value={scope.start}/>)
-                + '-' +
-                (<input className="scope-input" type="text" value={scope.end}/>)
-                +
-                (<div className="scope-btn icon"><Minus /></div>)
-              )
+              this.state.ipScopes.map((scope, i) => (
+                <div className="scope-box" key={i}>
+                  <Input className="scope-input" type="text" value={scope.start}/>
+                  ～
+                  <Input className="scope-input" type="text" value={scope.end}/>
+                  <span className="scope-btn icon"><Minus /></span>
+                </div>
+              ))
             }
-            <div className="scope-btn icon"><Plus /></div>
+            <span className="scope-btn plus icon"><Plus /></span>
           </div>
         </div>
       </section>

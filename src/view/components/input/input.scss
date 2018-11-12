@@ -18,43 +18,46 @@ $disabled-background: lighten($grey, 15%);
   padding: 0;
   margin: 0;
   position: relative;
-}
 
-.input {
-  height: 28px;
-  width: $normal-width;
-  padding: $normal-padding;
-  outline: none;
-  cursor: text;
-  border: 1px solid $grey;
-  border-radius: $radius - 1px;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  
-  &::placeholder {
-    color: $normal-placeholder-color;
+  .input {
+    height: 28px;
+    width: $normal-width;
+    padding: $normal-padding;
+    outline: none;
+    cursor: text;
+    border: 1px solid $grey;
+    border-radius: $radius - 1px;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    
+    &::placeholder {
+      color: $normal-placeholder-color;
+    }
+
+    &:hover {
+      background: $hover-background;
+    }
+
+    &:focus {
+      border-color: $blue;
+      // box-shadow: $focus-box-shadow;
+    }
+
+    &[disabled],
+    &.disabled,
+    fieldset[disabled] & {
+      color: $grey;
+      background: $disabled-background;
+      cursor: not-allowed;
+    }
+
+    &.error {
+      border-color: $red;
+    }
   }
-
-  &:hover {
-    background: $hover-background;
-  }
-
-  &:focus {
-    border-color: $blue;
-    // box-shadow: $focus-box-shadow;
-  }
-
-  &[disabled],
-  &.disabled,
-  fieldset[disabled] & {
-    color: $grey;
-    background: $disabled-background;
-    cursor: not-allowed;
-  }
-
   // 只有下边框的输入框
-  &.bbo {
+  &.bbo .input{
     border-color: transparent;
     // border-bottom-color: $grey;
     border-radius: 0;

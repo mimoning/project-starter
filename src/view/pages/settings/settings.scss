@@ -2,7 +2,46 @@
 
 .settings {
   padding: 15px;
-  .project-path {
+  max-width: 600px;
+  margin: 0 auto;
+  .scope-box {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .scope-input {
+    flex: 1 1 auto;
+    box-sizing: inherit;
+    margin: 0 15px;
+    
+    &:first-child {
+      margin-left: 0;
+    }
 
+    .input {
+      width: 100%;
+      box-sizing: inherit;
+    }
+
+  }
+  .scope-btn {
+    flex: 0 0 auto;
+    cursor: pointer;
+    position: relative;
+    fill: $red;
+    &:after {
+      content: ' ';
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      position: absolute;
+      left: -10px;
+      top: -10px;
+    }
+    &.plus {
+      fill: $green;
+    }
   }
 }

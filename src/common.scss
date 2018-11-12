@@ -27,6 +27,7 @@ svg {
 .icon {
   width: 16px;
   height: 16px;
+  display: inline-block;
 }
 
 .form-item {
@@ -41,6 +42,7 @@ svg {
 
   .form-item-label {
     width: 120px;
+    height: 30px;
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -48,6 +50,7 @@ svg {
   }
   .form-item-content {
     flex: 1 1 auto;
+    min-height: 30px;
     display: inline-flex;
     flex-direction: column;
   }
