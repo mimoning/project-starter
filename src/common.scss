@@ -38,6 +38,7 @@ svg {
   justify-content: space-between;
   &:last-child {
     margin-bottom: 15px;
+    border-bottom-color: transparent;
   }
 
   .form-item-label {
