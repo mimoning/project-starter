@@ -36,6 +36,11 @@ class Settings extends React.Component<any, State> {
     });
   }
 
+  public generateIPInputStatus(ip: string): 'error' | '' {
+    if (ip && !isIP(ip)) return 'error';
+    return '';
+  }
+
   public handleIpScopeChange(value: string, index: number, isStart: boolean = false):void {
     const ipScopes = this.state.ipScopes.map((v, i) => {
       if (i === index) {
@@ -67,6 +72,7 @@ class Settings extends React.Component<any, State> {
     }
   }
 
+
   public render() {
     return (
       <section className="settings">
@@ -89,10 +95,14 @@ class Settings extends React.Component<any, State> {
                 <div className="scope-box" key={i}>
                   <Input className="scope-input" type="text"
                     value={scope.start}
+                    status={this.generateIPInputStatus(scope.start)}
+                    message="IP 地址格式验证错误"
                     onChange={e => this.handleIpScopeChange(e.target.value, i, true)}/>
                   ～
                   <Input className="scope-input" type="text"
                     value={scope.end}
+                    status={this.generateIPInputStatus(scope.end)}
+                    message="IP 地址格式验证错误"
                     onChange={e => this.handleIpScopeChange(e.target.value, i)}/>
                   <span className="scope-btn icon" onClick={() => this.handleIpScopeRowChange(i)} ><Minus /></span>
                 </div>

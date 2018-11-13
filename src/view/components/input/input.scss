@@ -117,4 +117,19 @@ $disabled-background: lighten($grey, 15%);
       }
     }
   }
+
+  .input-message {
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    white-space: nowrap;
+    &.error {
+      color: $red;
+    }
+    &.success {
+      color: $green;
+    }
+  }
 }
