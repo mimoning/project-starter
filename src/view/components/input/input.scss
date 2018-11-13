@@ -55,6 +55,10 @@ $disabled-background: lighten($grey, 15%);
     &.error {
       border-color: $red;
     }
+
+    &.success {
+      border-color: $green;
+    }
   }
   // 只有下边框的输入框
   &.bbo .input{

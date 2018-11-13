@@ -1,4 +1,8 @@
 import * as React from 'react';
+
+import { isIP } from '../../../utils';
+
+// components
 import Input from '../../components/input';
 import { ReactComponent as Plus } from '../../../assets/image/icons/plus.svg';
 import { ReactComponent as Minus } from '../../../assets/image/icons/minus.svg';

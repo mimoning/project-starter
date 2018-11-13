@@ -1,14 +1,16 @@
 import * as React from 'react';
 import './input.scss';
 
-interface P extends React.DetailedHTMLProps <React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {}
+interface P extends React.DetailedHTMLProps <React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  status?: 'error' | 'success'
+}
 
 class Input extends React.Component <P, {}> {
   public render() {
     return (
       <div className={`input-box ${this.props.className || ''}`}>
         <input { ...this.props }
-          className="input"
+          className={`input ${this.props.status || ''}`}
         />
         {
           this.props.className && this.props.className.indexOf('bbo') > -1 ?
