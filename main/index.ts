@@ -44,3 +44,8 @@ app.on('activate', (): void => {
     createWindow()
   }
 })
+
+ipcMain.on('search-project-index', (event, arg) => {
+  mainWindow.setReprensentedFilename('/Users/**/Desktop');
+  mainWindow.setDocumentEdited(true)
+})

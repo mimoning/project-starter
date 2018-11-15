@@ -36,6 +36,10 @@ class Settings extends React.Component<any, State> {
     });
   }
 
+  public handleProjectPathFocus(value: string): void {
+    (window as ElectronWindow).electron.ipcRenderer.send('search-project-index')
+  }
+
   public generateIPInputStatus(ip: string): 'error' | '' {
     if (ip && !isIP(ip)) return 'error';
     return '';
@@ -83,6 +87,7 @@ class Settings extends React.Component<any, State> {
               className="bbo"
               id="projectPath"
               value={this.state.projectPath}
+              onFocus={e => this.handleProjectPathFocus(e.target.value)}
               onChange={e => this.handleProjectPathChange(e.target.value)}
             />
           </div>
