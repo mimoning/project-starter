@@ -2,7 +2,7 @@
   "name": "dce-starter",
   "version": "0.1.0",
   "private": true,
-  "main": "public/main.js",
+  "main": "main/index.js",
   "dependencies": {
     "history": "^4.7.2",
     "react": "^16.6.0",
@@ -14,7 +14,7 @@
     "start": "concurrently 'npm run render' 'npm run main'",
     "build": "cross-env BROWSER=none react-scripts build",
     "render": "cross-env BROWSER=none react-scripts start",
-    "main": "concurrently 'tsc -w ./public/main.ts' 'wait-on http://localhost:3000 && electron .'",
+    "main": "concurrently 'tsc -w ./main/index.ts ' 'wait-on http://localhost:3000 && electron .'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "render-in-browser": "react-scripts start"
