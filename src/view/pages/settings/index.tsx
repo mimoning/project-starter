@@ -1,4 +1,5 @@
 import * as React from 'react';
+import fs from 'fs';
 
 import { isIP } from '../../../utils';
 
@@ -28,6 +29,22 @@ class Settings extends React.Component<any, State> {
         end: '',
       }],
     }
+
+    this.activate()
+  }
+
+  private userDataPath = `${window.electron.remote.app.getPath('userData')}/settings.json`;
+
+  public activate(): void {
+    console.log(this.userDataPath)
+    window.fs.readFile(this.userDataPath, (err: any, data: Buffer) => {
+      if (err) return;
+      const json = data.toString();
+      try {
+        const initData = JSON.parse(json)
+        this.setState({ ...initData });
+      } catch (e) {}
+    })
   }
 
   public handleProjectPathChange(value: string):void {
@@ -37,8 +54,8 @@ class Settings extends React.Component<any, State> {
   }
 
   public handleProjectPathFocus(el: EventTarget & HTMLInputElement): void {
-    const paths = (window as ElectronWindow).electron.remote.dialog.showOpenDialog({
-      title: 'Select the project path',
+    const paths = window.electron.remote.dialog.showOpenDialog({
+      title: 'Project path',
       properties: [
         'openDirectory',
         'createDirectory',
@@ -89,6 +106,19 @@ class Settings extends React.Component<any, State> {
     }
   }
 
+  public save() {
+    const data = JSON.stringify(this.state);
+    window.fs.writeFile(this.userDataPath, data, (err: any) => {
+      if (err) {
+        window.electron.remote.dialog.showMessageBox({
+          type: 'error',
+          message: err.message
+        })
+        return;
+      }
+      this.props.history.push({ pathname: 'test' });
+    })
+  }
 
   public render() {
     return (
@@ -128,6 +158,9 @@ class Settings extends React.Component<any, State> {
             }
             <span className="scope-btn plus icon" onClick={() => this.handleIpScopeRowChange()}><Plus /></span>
           </div>
+        </div>
+        <div className="form-item">
+          <button className="btn blue" onClick={() => this.save()}>Save</button>
         </div>
       </section>
     );

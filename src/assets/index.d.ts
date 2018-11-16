@@ -1,3 +1,4 @@
-interface ElectronWindow extends Window {
+interface Window {
   electron: any,
+  fs: any,
 }
