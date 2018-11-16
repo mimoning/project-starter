@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, dialog } from 'electron'
 import * as elemon from 'elemon'
 
 let mainWindow: any = null
@@ -45,7 +45,6 @@ app.on('activate', (): void => {
   }
 })
 
-ipcMain.on('search-project-index', (event, arg) => {
-  mainWindow.setReprensentedFilename('/Users/**/Desktop');
-  mainWindow.setDocumentEdited(true)
-})
+// ipcMain.on('search-project-index', (event, arg) => {
+//   dialog.showOpenDialog('')
+// })

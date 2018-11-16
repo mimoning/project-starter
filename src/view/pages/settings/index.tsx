@@ -36,8 +36,21 @@ class Settings extends React.Component<any, State> {
     });
   }
 
-  public handleProjectPathFocus(value: string): void {
-    (window as ElectronWindow).electron.ipcRenderer.send('search-project-index')
+  public handleProjectPathFocus(el: EventTarget & HTMLInputElement): void {
+    const paths = (window as ElectronWindow).electron.remote.dialog.showOpenDialog({
+      title: 'Select the project path',
+      properties: [
+        'openDirectory',
+        'createDirectory',
+        'treatPackageAsDirectory',
+      ],
+    });
+    if (paths) {
+      this.setState({
+        projectPath: paths.join('/'),
+      });
+    }
+    el.blur();
   }
 
   public generateIPInputStatus(ip: string): 'error' | '' {
@@ -87,7 +100,7 @@ class Settings extends React.Component<any, State> {
               className="bbo"
               id="projectPath"
               value={this.state.projectPath}
-              onFocus={e => this.handleProjectPathFocus(e.target.value)}
+              onFocus={e => this.handleProjectPathFocus(e.target)}
               onChange={e => this.handleProjectPathChange(e.target.value)}
             />
           </div>

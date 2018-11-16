@@ -4,6 +4,10 @@
   padding: 15px;
   max-width: 600px;
   margin: 0 auto;
+  .input {
+    width: 100%;
+    box-sizing: inherit;
+  }
   .scope-box {
     display: inline-flex;
     justify-content: space-between;
@@ -18,12 +22,6 @@
     &:first-child {
       margin-left: 0;
     }
-
-    .input {
-      width: 100%;
-      box-sizing: inherit;
-    }
-
   }
   .scope-btn {
     flex: 0 0 auto;
