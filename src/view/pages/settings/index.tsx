@@ -3,6 +3,7 @@ import fs from 'fs';
 
 import { isIP, validateSettings } from '../../../utils';
 import { CHECK } from '../../constant';
+import { readSettingsFile } from '../../../services/settings';
 
 // components
 import Input from '../../components/input';
@@ -37,14 +38,8 @@ class Settings extends React.Component<any, State> {
   private userDataPath = `${window.electron.remote.app.getPath('userData')}/settings.json`;
 
   public activate(): void {
-    console.log(this.userDataPath)
-    window.fs.readFile(this.userDataPath, (err: any, data: Buffer) => {
-      if (err) return;
-      const json = data.toString();
-      try {
-        const initData = JSON.parse(json)
-        this.setState({ ...initData });
-      } catch (e) {}
+    readSettingsFile(data => {
+      this.setState({ ...data })
     })
   }
 

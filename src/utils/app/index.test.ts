@@ -1,4 +1,4 @@
-import * as appUtil from './index';
+import * as appUtil from '.';
 
 describe('appUtils', () => {
   describe('validateSettings', () => {
