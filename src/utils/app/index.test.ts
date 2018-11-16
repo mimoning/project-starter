@@ -12,6 +12,16 @@ describe('appUtils', () => {
       }
       expect(appUtil.validateSettings(data)).toBe(false);
     })
+    it('wrong ip', () => {
+      const data = {
+        projectPath: '',
+        ipScopes: [{
+          start: '1asd',
+          end: '192.168.2.1',
+        }]
+      }
+      expect(appUtil.validateSettings(data)).toBe(false);
+    })
     it('empty ip scopes', () => {
       const data = {
         projectPath: '/app/asd/asd/asd',

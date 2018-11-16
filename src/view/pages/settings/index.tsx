@@ -1,7 +1,8 @@
 import * as React from 'react';
 import fs from 'fs';
 
-import { isIP } from '../../../utils';
+import { isIP, validateSettings } from '../../../utils';
+import { CHECK } from '../../constant';
 
 // components
 import Input from '../../components/input';
@@ -108,6 +109,13 @@ class Settings extends React.Component<any, State> {
 
   public save() {
     const data = JSON.stringify(this.state);
+    if (!validateSettings(this.state)) {
+      window.electron.remote.dialog.showMessageBox({
+        type: 'error',
+        message: 'You need to improve form input.'
+      })
+      return;
+    }
     window.fs.writeFile(this.userDataPath, data, (err: any) => {
       if (err) {
         window.electron.remote.dialog.showMessageBox({
@@ -116,7 +124,7 @@ class Settings extends React.Component<any, State> {
         })
         return;
       }
-      this.props.history.push({ pathname: 'test' });
+      this.props.history.push({ pathname: CHECK });
     })
   }
 

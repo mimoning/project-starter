@@ -10,13 +10,14 @@ import Index from './view/pages/index';
 import Settings from './view/pages/settings';
 import './common.scss';
 import registerServiceWorker from './registerServiceWorker';
+import { INDEX, CHECK, SETTINGS } from './view/constant';
 
 ReactDOM.render(
   <Router>
     <Switch>
-      <Route exact path='/' component={Index} />
-      <Route path='/test' name='test' component={() => <div>This is the test page</div>} />
-      <Route path='/settings' name='settings' component={Settings}/>
+      <Route exact path='/' name={INDEX} component={Index} />
+      <Route path='/check' name={CHECK} component={() => <div>This is the test page</div>} />
+      <Route path='/settings' name={SETTINGS} component={Settings}/>
       <Route path="*">
         <Redirect to="/"></Redirect>
       </Route>

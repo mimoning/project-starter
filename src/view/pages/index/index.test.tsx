@@ -14,7 +14,7 @@ describe('<Index />', () => {
     const startBtn = index.find('button.start-btn');
     const settingsBtn = index.find('div.settings-btn');
     startBtn.simulate('click');
-    expect(history.location.pathname).toEqual('/test');
+    expect(history.location.pathname).toEqual('/check');
     settingsBtn.simulate('click');
     expect(history.location.pathname).toEqual('/settings');
   })

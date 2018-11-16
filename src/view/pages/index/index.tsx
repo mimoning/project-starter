@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactComponent as SettingLogo } from '../../../assets/image/icons/settings.svg';
+import { SETTINGS, CHECK } from '../../constant';
 
 import './index.scss';
 
@@ -27,8 +28,8 @@ class Index extends React.Component <any, State> {
     return (
       <div className="App">
         <h1 className="App-title">Welcome to use <strong>DCE Starter</strong></h1>
-        <button className="btn blue start-btn" onClick={() => this.switchPage('test')}>Start DCE →</button>
-        <div className="settings-btn" onClick={() => this.switchPage('settings')}><SettingLogo /></div>
+        <button className="btn blue start-btn" onClick={() => this.switchPage(CHECK)}>Start DCE →</button>
+        <div className="settings-btn" onClick={() => this.switchPage(SETTINGS)}><SettingLogo /></div>
       </div>
     );
   }
