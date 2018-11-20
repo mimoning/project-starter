@@ -1,5 +1,4 @@
 import * as React from 'react';
-import fs from 'fs';
 
 import { isIP, validateSettings } from '../../../utils';
 import { CHECK } from '../../constant';
