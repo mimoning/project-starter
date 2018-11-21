@@ -1,9 +1,11 @@
+@import '../../../assets/styles/variables';
+
 $box-length: 50px;
 $rotate-angle: 45deg;
 $leaf-scale: scale(1);
-$leaf-color: #4c9bff;
-$leaf-lighter-color: #338dff;
-$leaf-darker-color: #197fff;
+$leaf-color: $blue;
+$leaf-lighter-color: lighten($blue, 4%);
+$leaf-darker-color: darken($blue, 10%);
 $leaf-perspective: perspective(140px);
 $leaf-flip-time: 0.3s;
 
