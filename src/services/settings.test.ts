@@ -21,10 +21,11 @@ describe('settings service', () => {
   
   describe('read settings file', () => {
     it('read file ok', () => {
-      settingsService.readSettingsFile((data) => {
-        expect(data).toHaveProp('projectPath');
-        expect(data).toHaveProp('isScopes');
-      })
+      settingsService.readSettingsFile()
+        .then((data) => {
+          expect(data).toHaveProp('projectPath');
+          expect(data).toHaveProp('isScopes');
+        })
     });
   });
 });

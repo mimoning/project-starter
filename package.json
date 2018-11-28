@@ -4,8 +4,6 @@
   "private": true,
   "main": "main/index.js",
   "dependencies": {
-    "@types/react-redux": "^6.0.9",
-    "@types/redux": "^3.6.0",
     "history": "^4.7.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
@@ -24,6 +22,8 @@
     "render-in-browser": "react-scripts start"
   },
   "devDependencies": {
+    "@types/react-redux": "^6.0.9",
+    "@types/redux": "^3.6.0",
     "@types/enzyme": "^3.1.15",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/history": "^4.7.2",

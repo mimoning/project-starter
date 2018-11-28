@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import { isIP, validateSettings } from '../../../utils';
 import { CHECK } from '../../constant';
-import { readSettingsFile } from '../../../services/settings';
+
+// types
+import { PropsOrigin, SettingsData } from '../../../types';
 
 // components
 import Input from '../../components/input';
@@ -10,6 +14,7 @@ import { ReactComponent as Plus } from '../../../assets/image/icons/plus.svg';
 import { ReactComponent as Minus } from '../../../assets/image/icons/minus.svg';
 
 import './settings.scss';
+import { setSettings } from '../../../actions';
 
 interface State {
   projectPath: string,
@@ -19,28 +24,23 @@ interface State {
   }[],
 }
 
-class Settings extends React.Component<any, State> {
-  constructor(props: any) {
+interface Props extends PropsOrigin {
+  settings: SettingsData;
+  actions: {
+    setSettings: Function;
+  }
+}
+
+class Settings extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
-    this.state = {
-      projectPath: '',
-      ipScopes: [{
-        start: '',
-        end: '',
-      }],
-    }
+    this.state = { ...props.settings };
 
-    this.activate()
+    console.log(this.props)
   }
 
   private userDataPath = `${window.electron.remote.app.getPath('userData')}/settings.json`;
-
-  public activate(): void {
-    readSettingsFile(data => {
-      this.setState({ ...data })
-    })
-  }
 
   public handleProjectPathChange(value: string):void {
     this.setState({
@@ -118,6 +118,7 @@ class Settings extends React.Component<any, State> {
         })
         return;
       }
+      this.props.actions.setSettings(this.state);
       this.props.history.push({ pathname: CHECK });
     })
   }
@@ -169,4 +170,12 @@ class Settings extends React.Component<any, State> {
   }
 }
 
-export default Settings;
+function mapStateToProps(state: { settings: SettingsData }) {
+  return { settings: state.settings };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return { actions: bindActionCreators({ setSettings }, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
