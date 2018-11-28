@@ -4,14 +4,15 @@ import { electron, fs } from '../../test/mocks';
 describe('settings service', () => {
   window.fs = fs;
   window.electron = electron;
+
   const MOCK_FILE_INFO = {
-    '/PATH/userdata.json': `
-      "projectPath": ""
-      "ipScopes": [{
-        start: "",
-        end: ""
+    '/PATH/settings.json': {
+      projectPath: '',
+      ipScopes: [{
+        start: '',
+        end: ''
       }]
-    `,
+    },
   }
 
   beforeEach(() => {
@@ -20,12 +21,10 @@ describe('settings service', () => {
 
   
   describe('read settings file', () => {
-    it('read file ok', () => {
-      settingsService.readSettingsFile()
-        .then((data) => {
-          expect(data).toHaveProp('projectPath');
-          expect(data).toHaveProp('isScopes');
-        })
+    test('read file ok', async () => {
+      const data = await settingsService.readSettingsFile()
+      expect(data).toHaveProperty('projectPath');
+      expect(data).toHaveProperty('ipScopes');
     });
   });
 });

@@ -9,7 +9,7 @@ interface MockPath {
 };
 
 const MOCK_PATH: MockPath = {
-  userData: '/PATH/userdata.json',
+  userData: '/PATH',
 }
 
 function getPath(option: string) {

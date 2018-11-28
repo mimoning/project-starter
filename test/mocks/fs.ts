@@ -1,23 +1,17 @@
-import path from 'path';
-
 const fs = jest.genMockFromModule('fs');
 
 let mockFiles = Object.create(null);
 
-function __setMockFiles(newMockFiles: {}[]): void {
+function __setMockFiles(newMockFiles: any): void {
   mockFiles = Object.create(null);
   for (const file in newMockFiles) {
-    const dir = path.dirname(file);
-
-    if (!mockFiles[dir]) {
-      mockFiles[dir] = [];
-    }
-    mockFiles[dir].push(path.basename(file))
+    mockFiles[file] = newMockFiles[file];
   }
 }
 
-function readFile(directoryPath: string) {
-  return mockFiles[directoryPath] || []
+function readFile(filePath: string, callback: (err: any, data: Buffer) => void) {
+  const data = new Buffer(JSON.stringify(mockFiles[filePath] || {}));
+  callback(null, data);
 }
 
 Object.defineProperties(fs, {
