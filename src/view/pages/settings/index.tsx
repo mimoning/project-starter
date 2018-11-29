@@ -16,13 +16,7 @@ import { ReactComponent as Minus } from '../../../assets/image/icons/minus.svg';
 import './settings.scss';
 import { setSettings } from '../../../actions';
 
-interface State {
-  projectPath: string,
-  ipScopes: {
-    start: string,
-    end: string,
-  }[],
-}
+interface State extends SettingsData {}
 
 interface Props extends PropsOrigin {
   settings: SettingsData;
@@ -37,10 +31,13 @@ class Settings extends React.Component<Props, State> {
     this.state = { ...props.settings };
   }
 
-  public componentWillReceiveProps() {
-    this.setState({
-      ...this.props.settings
-    })
+  public componentWillReceiveProps(nextProps: Props) {
+    if (!validateSettings(nextProps.settings)) return;
+    if (JSON.stringify(this.state) !== JSON.stringify(nextProps.settings)) {
+      this.setState({
+        ...nextProps.settings
+      })
+    }
   }
 
   private userDataPath = `${window.electron.remote.app.getPath('userData')}/settings.json`;
@@ -88,7 +85,7 @@ class Settings extends React.Component<Props, State> {
   }
 
   public handleIpScopeRowChange(index?: number): void {
-    const ipScopes = this.state.ipScopes;
+    const { ipScopes } = this.state;
     const initScope = {
       start: '',
       end: '',
@@ -127,6 +124,7 @@ class Settings extends React.Component<Props, State> {
   }
 
   public render() {
+    const { projectPath, ipScopes } = this.state;
     return (
       <section className="settings">
         <div className="form-item">
@@ -135,7 +133,7 @@ class Settings extends React.Component<Props, State> {
             <Input type="text"
               className="bbo"
               id="projectPath"
-              value={this.state.projectPath}
+              value={projectPath}
               onFocus={e => this.handleProjectPathFocus(e.target)}
               onChange={e => this.handleProjectPathChange(e.target.value)}
             />
@@ -145,7 +143,7 @@ class Settings extends React.Component<Props, State> {
           <label className="form-item-label">IP scopes</label>
           <div className="form-item-content">
             {
-              this.state.ipScopes.map((scope, i) => (
+              ipScopes.map((scope, i) => (
                 <div className="scope-box" key={i}>
                   <Input className="scope-input" type="text"
                     value={scope.start}

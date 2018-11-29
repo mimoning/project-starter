@@ -10,7 +10,6 @@ import Loading from '../../components/loading';
 
 import { validateSettings } from '../../../utils';
 import { SETTINGS, CHECK } from '../../constant';
-import { readSettingsFile } from '../../../services/settings';
 
 import './index.scss';
 import { setSettings } from '../../../actions';
