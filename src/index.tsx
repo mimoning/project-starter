@@ -5,11 +5,15 @@ import { Provider } from 'react-redux';
 
 import AppReducers from './reducers';
 
+import init from './services/initialize';
+
 import App from './App';
 import './common.scss';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(AppReducers);
+
+init(store.dispatch);
 
 Object.defineProperty(window, 'store', { value: store });
 

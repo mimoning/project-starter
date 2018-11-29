@@ -15,53 +15,21 @@ import { readSettingsFile } from '../../../services/settings';
 import './index.scss';
 import { setSettings } from '../../../actions';
 
-interface State {
-  loading: boolean,
-  ready: boolean,
-}
-
 interface Props extends PropsOrigin {
   settings: SettingsData;
+  settingsStatus: boolean;
   actions: {
     setSettings: Function;
   }
 }
 
-class Index extends React.Component <Props, State> {
+class Index extends React.Component <Props, any> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      loading: true,
-      ready: false,
-    }
-  }
-
-  public componentDidMount() {
-    this.activate();
-  }
-
-  private activate() {
-    this.setState({ loading: true });
-    if (validateSettings(this.props.settings)) {
-      this.setState({ ready: true, loading: false });
-      return;
-    }
-    readSettingsFile()
-      .then((data: SettingsData) => {
-        if (validateSettings(data)) {
-          this.setState({ ready: true, loading: false });
-          this.props.actions.setSettings(data);
-        } else {
-          this.setState({ ready: false, loading: false });
-        }
-      })
-      .catch(() => {
-        this.setState({ ready: false, loading: false });
-      })
   }
 
   public start(): void {
-    const { ready: isReady } = this.state;
+    const isReady = validateSettings(this.props.settings)
     if (isReady) {
       this.switchPage(CHECK);
     } else {
@@ -74,7 +42,7 @@ class Index extends React.Component <Props, State> {
   }
 
   public render() {
-    const { loading } = this.state;
+    const loading = !this.props.settingsStatus;
     if (loading) return <Loading/>
     return (
       <div className="App">
@@ -86,8 +54,11 @@ class Index extends React.Component <Props, State> {
   }
 }
 
-function mapStateToProps(state: { settings: SettingsData }) {
-  return { settings: state.settings };
+function mapStateToProps(state: { settings: SettingsData, settingsDataStatus: boolean }) {
+  return {
+    settings: state.settings,
+    settingsStatus: state.settingsDataStatus
+  };
 }
 
 function mapDispatchToProps(dispatch: any) {

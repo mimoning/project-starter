@@ -34,10 +34,13 @@ interface Props extends PropsOrigin {
 class Settings extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
     this.state = { ...props.settings };
+  }
 
-    console.log(this.props)
+  public componentWillReceiveProps() {
+    this.setState({
+      ...this.props.settings
+    })
   }
 
   private userDataPath = `${window.electron.remote.app.getPath('userData')}/settings.json`;
