@@ -21,10 +21,11 @@ describe('settings service', () => {
 
   
   describe('read settings file', () => {
-    test('read file ok', async () => {
+    test('read file ok', async done => {
       const data = await settingsService.readSettingsFile()
       expect(data).toHaveProperty('projectPath');
       expect(data).toHaveProperty('ipScopes');
+      done()
     });
   });
 });
