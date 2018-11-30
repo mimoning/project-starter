@@ -4,11 +4,11 @@ import Loading from '.';
 
 describe('<Loading />', () => {
 
-  it('renders without crashing', () => {
+  test('renders without crashing', () => {
     shallow(<Loading />);
   })
   
-  it('normal opening and closing', () => {
+  test('normal opening and closing', () => {
     const loading = shallow(<Loading />);
     const empty = <div></div>;
     expect(loading.find('.loading-box').length).toBe(1);

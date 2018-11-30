@@ -12,7 +12,7 @@ describe('reducers', () => {
 
   const initialState = reducers(undefined, { type: '' });
 
-  it('change settings', () => {
+  test('change settings', () => {
     
     const data = {
       projectPath: '/a/a/a/a',
@@ -30,7 +30,7 @@ describe('reducers', () => {
     });
   })
 
-  it('change settings data status', () => {
+  test('change settings data status', () => {
     expect(
       reducers(initialState, { type: SETTINGS_DATA_STATUS, data: true }),
     ).toEqual({

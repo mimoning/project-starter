@@ -25,7 +25,7 @@ describe('Utils', () => {
       expect(utils.compareIP(input1, input2)).toBe(expected);
     })
 
-    it('bad arguments', () => {
+    test('bad arguments', () => {
       function badArgs() {
         utils.compareIP('123213', 'asdasd')
       }
@@ -44,14 +44,14 @@ describe('Utils', () => {
       expect(utils.plusIP(ip, n)).toBe(expected);
     })
 
-    it('bad arguments', () => {
+    test('bad arguments', () => {
       function badArgs() {
         utils.plusIP('123213', 1)
       }
       expect(badArgs).toThrowError();
     })
 
-    it('oversize computation', () => {
+    test('oversize computation', () => {
       function badArgs() {
         utils.plusIP('255.255.255.255', 1);
       }
@@ -69,11 +69,11 @@ describe('Utils', () => {
     `('$input1 ~ $input2 has $expected IPs', ({ input1, input2, expected }) => {
       expect(utils.countIP(input1, input2)).toHaveLength(expected);
     })
-    it('1.0.1.221 ~ 1.0.1.224 is [1.0.1.221, 1.0.1.222, 1.0.1.223, 1.0.1.224]', () => {
+    test('1.0.1.221 ~ 1.0.1.224 is [1.0.1.221, 1.0.1.222, 1.0.1.223, 1.0.1.224]', () => {
       const expected = ['1.0.1.221', '1.0.1.222', '1.0.1.223', '1.0.1.224'];
       expect(utils.countIP('1.0.1.221', '1.0.1.224')).toEqual(expected);
     })
-    it('bad arguments', () => {
+    test('bad arguments', () => {
       function badArgs() {
         utils.countIP('123213', 'asdasd')
       }

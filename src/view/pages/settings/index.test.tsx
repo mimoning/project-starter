@@ -13,7 +13,7 @@ describe('<Settings />', () => {
   window.electron = electron;
   window.fs = fs;
   const store = createStore(AppReducers);
-  it('renders without crashing', () => {
+  test('renders without crashing', () => {
     shallow(
       <Provider store={store}>
         <SettingsPage history={{} as History} />

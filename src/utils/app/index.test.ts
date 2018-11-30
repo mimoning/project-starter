@@ -2,7 +2,7 @@ import * as appUtil from '.';
 
 describe('appUtils', () => {
   describe('validateSettings', () => {
-    it('missing projectPath', () => {
+    test('missing projectPath', () => {
       const data = {
         projectPath: '',
         ipScopes: [{
@@ -12,7 +12,7 @@ describe('appUtils', () => {
       }
       expect(appUtil.validateSettings(data)).toBe(false);
     })
-    it('wrong ip', () => {
+    test('wrong ip', () => {
       const data = {
         projectPath: '',
         ipScopes: [{
@@ -22,7 +22,7 @@ describe('appUtils', () => {
       }
       expect(appUtil.validateSettings(data)).toBe(false);
     })
-    it('empty ip scopes', () => {
+    test('empty ip scopes', () => {
       const data = {
         projectPath: '/app/asd/asd/asd',
         ipScopes: [{
@@ -32,7 +32,7 @@ describe('appUtils', () => {
       }
       expect(appUtil.validateSettings(data)).toBe(false);
     })
-    it('start ip only', () => {
+    test('start ip only', () => {
       const data = {
         projectPath: '/app/asd/asd/asd',
         ipScopes: [{
@@ -42,7 +42,7 @@ describe('appUtils', () => {
       }
       expect(appUtil.validateSettings(data)).toBe(true);
     })
-    it('complete settings', () => {
+    test('complete settings', () => {
       const data = {
         projectPath: '/app/asd/asd/asd',
         ipScopes: [{

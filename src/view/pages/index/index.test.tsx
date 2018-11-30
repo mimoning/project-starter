@@ -24,9 +24,9 @@ describe('<Index />', () => {
     )
   })
 
-  it('renders without crashing', () => {});
+  test('renders without crashing', () => {});
 
-  it('switch to settings page', () => {
+  test('switch to settings page', () => {
     setTimeout(() => {
       const settingsBtn = indexPage.find('div.settings-btn');
       settingsBtn.simulate('click');
@@ -34,7 +34,7 @@ describe('<Index />', () => {
     })
   })
 
-  it('settings complete', () => {
+  test('settings complete', () => {
     setTimeout(() => {
       const startBtn = indexPage.find('button.start-btn');
       startBtn.simulate('click');
@@ -44,7 +44,7 @@ describe('<Index />', () => {
     })
   })
 
-  it('settings error or empty', () => {
+  test('settings error or empty', () => {
     setTimeout(() => {
       const startBtn = indexPage.find('button.start-btn');
       startBtn.simulate('click');
