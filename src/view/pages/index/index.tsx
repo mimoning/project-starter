@@ -22,7 +22,7 @@ interface Props extends PropsOrigin {
   }
 }
 
-class Index extends React.Component <Props, any> {
+export class Index extends React.Component <Props, any> {
   constructor(props: Props) {
     super(props);
   }
