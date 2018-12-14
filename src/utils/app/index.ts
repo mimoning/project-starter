@@ -1,6 +1,7 @@
 import { bindActionCreators, ActionCreatorsMapObject } from 'redux';
 
 import { isIP } from '../ip';
+import { StateProperties } from '../../reducers';
 
 export function validateSettings(data: string | object): boolean {
   let settings: any;
@@ -14,14 +15,14 @@ export function validateSettings(data: string | object): boolean {
   return true;
 }
 
-type StringMap = [string, string];
+type StringMap = [string, StateProperties];
 
 /**
  * @param keys (string | StringMap)[], If key is string, You set the
  * state prop to the components accordingly. If key is StringMap, You set
  * the first string as the prop, and the second string is a prop from state
  */
-export function mapStateToProps(...keys: (string|StringMap)[]) {
+export function mapStateToProps(...keys: (StateProperties|StringMap)[]) {
   return function (state: any): {} {
     const props = {} as {
       [index: string]: any;

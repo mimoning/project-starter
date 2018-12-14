@@ -1,9 +1,17 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import Loading from '../../components/loading';
+import { mapStateToProps } from '../../../utils';
+// types
+import { PropsOrigin, SettingsData } from '../../../types';
 
-class Check extends React.Component<any, any> {
-  constructor(props: any) {
+interface Props extends PropsOrigin {
+  settings: SettingsData;
+}
+
+class Check extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     
     this.state = {
@@ -12,7 +20,11 @@ class Check extends React.Component<any, any> {
   }
 
   public activate() {
-    
+    this.checkUsableIP();
+  }
+
+  public checkUsableIP() {
+
   }
 
   public render() {
@@ -22,4 +34,6 @@ class Check extends React.Component<any, any> {
 
 }
 
-export default Check;
+export default connect(
+  mapStateToProps('settings'),
+)(Check);

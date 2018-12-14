@@ -37,6 +37,9 @@ function settingsDataStatusReducer(state: boolean | undefined, action: StatusAct
   }
 }
 
+export type StateProperties = 
+  'settings' | 'settingsDataStatus';
+
 export default combineReducers({
   settings: settingsReducer,
   settingsDataStatus: settingsDataStatusReducer,
