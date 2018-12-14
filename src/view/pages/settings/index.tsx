@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { isIP, validateSettings } from '../../../utils';
+import { isIP, validateSettings, mapStateToProps, mapDispatchToProps } from '../../../utils';
 import { CHECK } from '../../constant';
 
 // types
@@ -171,12 +170,7 @@ class Settings extends React.Component<Props, State> {
   }
 }
 
-function mapStateToProps(state: { settings: SettingsData }) {
-  return { settings: state.settings };
-}
-
-function mapDispatchToProps(dispatch: any) {
-  return { actions: bindActionCreators({ setSettings }, dispatch) };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(
+  mapStateToProps('settings'),
+  mapDispatchToProps({ setSettings }),
+)(Settings);

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // types
@@ -8,7 +7,7 @@ import { SettingsData, PropsOrigin } from '../../../types';
 import { ReactComponent as SettingLogo } from '../../../assets/image/icons/settings.svg';
 import Loading from '../../components/loading';
 
-import { validateSettings } from '../../../utils';
+import { validateSettings, mapStateToProps, mapDispatchToProps } from '../../../utils';
 import { SETTINGS, CHECK } from '../../constant';
 
 import './index.scss';
@@ -53,15 +52,10 @@ export class Index extends React.Component <Props, any> {
   }
 }
 
-function mapStateToProps(state: { settings: SettingsData, settingsDataStatus: boolean }) {
-  return {
-    settings: state.settings,
-    settingsStatus: state.settingsDataStatus
-  };
-}
-
-function mapDispatchToProps(dispatch: any) {
-  return { actions: bindActionCreators({ setSettings }, dispatch) };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(
+  mapStateToProps(
+    'settings',
+    ['settingsStatus', 'settingsDataStatus']
+  ), 
+  mapDispatchToProps({ setSettings }),
+)(Index);
